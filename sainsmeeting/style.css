@@ -1,0 +1,65 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Kertas Pratonton di Skrin Klien */
+#kertasA4 {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    box-sizing: border-box;
+    /* Pastikan Kertas tidak mengecut jika dipapar di telefon */
+    flex-shrink: 0; 
+}
+
+.agenda-cetak-block {
+    page-break-inside: avoid; 
+}
+
+#cetakHadir, #cetakTidakHadir, #cetakTurutHadir {
+    line-height: 1.6;
+}
+
+/* Sembunyikan scrollbar untuk textarea auto-expand */
+textarea {
+    overflow: hidden; 
+}
+
+/* =========================================================
+   PERATURAN CETAKAN FIZIKAL BROWSER (A4 SEBENAR)
+========================================================= */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0; 
+    }
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+    #modPratonton {
+        display: block !important;
+        background: white !important;
+        height: auto !important;
+    }
+    #toolbarCetak {
+        display: none !important;
+    }
+    /* Pastikan scrollbar container tidak mencacatkan cetakan fizikal */
+    .overflow-x-auto {
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+    #kertasA4 {
+        margin: 0 !important;
+        box-shadow: none !important;
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 15mm !important; /* Margin fizikal ke tepi kertas */
+    }
+}

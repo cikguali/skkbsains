@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjana Minit Mesyuarat Pintar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-inter min-h-screen text-slate-800">
+
+    <div id="modBorang" class="max-w-5xl mx-auto bg-white p-4 sm:p-6 md:p-10 my-4 sm:my-8 rounded-xl shadow-lg border border-gray-200">
+        <h1 class="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-center text-slate-800">Sistem Minit Mesyuarat</h1>
+        
+        <form id="minitForm" class="space-y-6 sm:space-y-8">
+            <div class="bg-slate-50 p-4 sm:p-6 rounded-lg border border-slate-200">
+                <h2 class="text-lg sm:text-xl font-semibold mb-4 text-slate-700 border-b pb-2">Maklumat Asas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="md:col-span-2">
+                        <label class="block font-semibold text-sm mb-1">Nama Sekolah</label>
+                        <input type="text" id="sekolah" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cth: SEKOLAH KEBANGSAAN KUALA BETIS, GUA MUSANG">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block font-semibold text-sm mb-1">Tajuk Mesyuarat & Bilangan</label>
+                        <input type="text" id="tajuk" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cth: MINIT MESYUARAT KEJOHANAN OLAHRAGA TAHUNAN BIL 1/2026">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-sm mb-1">Tarikh</label>
+                        <input type="text" id="tarikh" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cth: 19 Januari 2026 (Isnin)">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-sm mb-1">Masa</label>
+                        <input type="text" id="masa" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cth: 1.10 Tengahari">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-sm mb-1">Pengerusi</label>
+                        <input type="text" id="pengerusi" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cth: En Abdul Halim Bin Mat Hanipi">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-sm mb-1">Tempat</label>
+                        <input type="text" id="tempat" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cth: Bilik Mesyuarat SK Kuala Betis">
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 p-4 sm:p-6 rounded-lg border border-slate-200">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b pb-2 mb-4 gap-2">
+                    <h2 class="text-lg sm:text-xl font-semibold text-slate-700">Kehadiran Guru & Staf</h2>
+                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded font-semibold">Buang tanda pada nama jika guru tidak hadir</span>
+                </div>
+                
+                <div id="senaraiGuruContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 max-h-96 overflow-y-auto p-2 border border-dashed border-gray-300 rounded bg-white">
+                    </div>
+
+                <div class="mt-6 border-t pt-4">
+                    <label class="block font-semibold text-sm mb-1">Turut Hadir (Pelawat / Pegawai PPD / Ibu Bapa)</label>
+                    <textarea id="hadirPelawat" rows="2" class="w-full border p-2 rounded auto-expand focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Cth: 1. Nama Pegawai (Pegawai PPD) - Biarkan kosong jika tiada"></textarea>
+                </div>
+            </div>
+
+            <div class="bg-slate-50 p-4 sm:p-6 rounded-lg border border-slate-200">
+                <h2 class="text-lg sm:text-xl font-semibold text-slate-700 border-b pb-2 mb-4">Agenda Mesyuarat</h2>
+                <p class="text-xs sm:text-sm text-gray-500 mb-4">Nota: Taip tajuk agenda untuk keluarkan sub-agenda (1.1, 1.2). Ruang yang kosong automatik tidak dicetak.</p>
+                
+                <div id="senaraiAgenda" class="space-y-6 mb-4"></div>
+                
+                <button type="button" onclick="tambahAgenda()" class="text-sm bg-indigo-100 text-indigo-700 px-4 py-2 rounded font-bold hover:bg-indigo-200 w-full md:w-auto transition">+ Tambah Agenda Utama Baharu</button>
+            </div>
+
+            <div class="bg-slate-50 p-4 sm:p-6 rounded-lg border border-slate-200">
+                <h2 class="text-lg sm:text-xl font-semibold mb-4 text-slate-700 border-b pb-2">Pengesahan</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div>
+                        <label class="block font-semibold text-sm mb-1 text-slate-500">Disediakan Oleh:</label>
+                        <input type="text" id="disediakanNama" class="w-full border p-2 rounded mb-2 focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Nama Penuh Pelapor">
+                        <input type="text" id="disediakanJawatan" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Jawatan (Cth: Setiausaha)">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-sm mb-1 text-slate-500">Disemak/Disahkan Oleh:</label>
+                        <input type="text" id="disahkanNama" class="w-full border p-2 rounded mb-2 focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Nama Penuh Pengesah">
+                        <input type="text" id="disahkanJawatan" class="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Jawatan (Cth: Guru Besar)">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 pt-4">
+                <button type="button" onclick="padamDraf()" class="bg-red-50 text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-100 transition w-full sm:w-auto">Padam Draf</button>
+                <button type="button" onclick="paparPratonton()" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold shadow hover:bg-blue-700 transition w-full sm:w-auto">Pratonton & Cetak</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="modPratonton" class="hidden h-screen flex flex-col bg-gray-300">
+        
+        <div id="toolbarCetak" class="bg-slate-800 text-white p-3 sm:p-4 sticky top-0 z-50 shadow-md flex justify-between items-center px-2 sm:px-10 flex-shrink-0">
+            <button onclick="kembaliEdit()" class="bg-slate-600 px-3 sm:px-4 py-2 rounded hover:bg-slate-500 font-semibold text-sm sm:text-base">&larr; Kembali</button>
+            <div class="text-sm hidden md:block">Pilih "Save as PDF" pada tetingkap cetakan nanti.</div>
+            <button onclick="window.print()" class="bg-green-500 px-4 sm:px-6 py-2 rounded hover:bg-green-600 font-bold shadow text-white text-sm sm:text-base flex items-center gap-2">
+                <span>🖨️</span> <span class="hidden sm:inline">Cetak / Simpan PDF</span><span class="sm:hidden">Cetak</span>
+            </button>
+        </div>
+
+        <div class="overflow-x-auto flex-1 p-2 sm:p-8">
+            <div id="kertasA4" class="bg-white mx-auto shadow-2xl text-black font-inter text-[11pt] leading-relaxed">
+                
+                <div class="text-center font-bold mb-6">
+                    <div id="cetakSekolah" class="uppercase text-[12pt]"></div>
+                    <div id="cetakTajuk" class="uppercase text-[12pt]"></div>
+                </div>
+
+                <table class="w-full mb-6 text-left border-collapse text-sm sm:text-[11pt]">
+                    <tr><td class="w-20 sm:w-24 font-semibold align-top pb-1">Tarikh</td><td class="w-4 align-top">:</td><td id="cetakTarikh" class="pb-1"></td></tr>
+                    <tr><td class="font-semibold align-top pb-1">Masa</td><td class="align-top">:</td><td id="cetakMasa" class="pb-1"></td></tr>
+                    <tr><td class="font-semibold align-top pb-1">Tempat</td><td class="align-top">:</td><td id="cetakTempat" class="pb-1"></td></tr>
+                    <tr><td class="font-semibold align-top">Pengerusi</td><td class="align-top">:</td><td id="cetakPengerusi"></td></tr>
+                </table>
+
+                <div class="mb-6 text-sm sm:text-[11pt]">
+                    <div class="font-bold underline mb-2">Kehadiran:</div>
+                    <div id="cetakHadir" class="pl-4 mb-2"></div>
+                    
+                    <div id="kawasanTurutHadir" class="hidden">
+                        <div class="font-bold underline mb-2 mt-4">Turut Hadir:</div>
+                        <div id="cetakTurutHadir" class="whitespace-pre-wrap pl-4 mb-2"></div>
+                    </div>
+
+                    <div id="kawasanTidakHadir" class="hidden">
+                        <div class="font-bold underline mb-2 mt-4">Tidak Hadir Bersebab:</div>
+                        <div id="cetakTidakHadir" class="pl-4"></div>
+                    </div>
+                </div>
+
+                <div id="cetakAgendaContainer" class="mb-8 text-sm sm:text-[11pt]"></div>
+
+                <div class="grid grid-cols-2 gap-4 sm:gap-8 mt-12 pt-8 agenda-cetak-block text-sm sm:text-[11pt]">
+                    <div>
+                        <p class="mb-8 sm:mb-12">Disediakan Oleh,</p>
+                        <p class="font-bold uppercase" id="cetakSediaNama"></p>
+                        <p id="cetakSediaJawatan"></p>
+                    </div>
+                    <div>
+                        <p class="mb-8 sm:mb-12">Disemak Oleh,</p>
+                        <p class="font-bold uppercase" id="cetakSahNama"></p>
+                        <p id="cetakSahJawatan"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

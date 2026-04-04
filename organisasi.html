@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Carta Organisasi Panitia Sains</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* THEME */
+:root {
+    --bg: #f6f7fb;
+    --text: #2b2d42;
+    --card: rgba(255, 255, 255, 0.55);
+    --border: rgba(255,255,255,0.6);
+    --accent: #a5b4fc;
+    --accent2: #bae6fd;
+}
+
+
+
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* BODY */
+body {
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(circle at top left, var(--accent2), transparent 40%),
+        radial-gradient(circle at bottom right, var(--accent), transparent 40%),
+        var(--bg);
+    color: var(--text);
+    display:flex;
+    justify-content:center;
+    padding:20px;
+}
+
+/* CONTAINER */
+.container { width:100%; max-width:500px; }
+
+/* HEADER */
+.header { text-align:center; margin-bottom:15px; }
+
+.logo { width:80px; margin:10px auto; }
+
+.school-name {
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:1.2rem;
+}
+
+.school-info { font-size:0.85rem; opacity:0.7; }
+
+/* TITLE */
+.title {
+    text-align:center;
+    font-family:'Poppins',sans-serif;
+    font-size:1.3rem;
+    margin:10px 0 20px;
+}
+
+/* BUTTONS */
+.top-actions {
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.btn {
+    padding:10px 14px;
+    border-radius:12px;
+    font-size:0.85rem;
+    text-decoration:none;
+    color:var(--text);
+    background:var(--card);
+    backdrop-filter:blur(10px);
+    border:1px solid var(--border);
+    transition: all 0.25s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background: var(--accent);
+    color: white;
+}
+
+/* CARD */
+.card {
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    background: var(--card);
+    backdrop-filter: blur(14px);
+    border:1px solid var(--border);
+
+    border-radius:18px;
+    padding:14px;
+    margin-bottom:12px;
+
+    transition: all 0.3s ease;
+
+    opacity:0;
+    transform:translateY(15px);
+    animation:fadeUp 0.6s ease forwards;
+}
+
+/* HOVER ANIMATION */
+.card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+/* AVATAR (BESAR) */
+.avatar {
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid rgba(255,255,255,0.6);
+}
+
+/* INFO */
+.info { flex:1; }
+
+.role {
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+}
+
+.name {
+    font-size:0.85rem;
+    opacity:0.85;
+}
+
+/* GRID AHLI */
+.grid {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:10px;
+}
+
+.member {
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+/* ANIMATION DELAY */
+.card:nth-child(1){animation-delay:0.05s;}
+.card:nth-child(2){animation-delay:0.1s;}
+.card:nth-child(3){animation-delay:0.15s;}
+.card:nth-child(4){animation-delay:0.2s;}
+.card:nth-child(5){animation-delay:0.25s;}
+.card:nth-child(6){animation-delay:0.3s;}
+.card:nth-child(7){animation-delay:0.35s;}
+
+@keyframes fadeUp {
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* PRINT */
+@media print {
+    .top-actions { display:none; }
+    body { background:white; }
+}
+
+/* FOOTER */
+.footer {
+    text-align:center;
+    margin-top:15px;
+    font-size:0.75rem;
+    opacity:0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+        <img src="logo.png" class="logo">
+        <div class="school-name">SK Kuala Betis</div>
+        <div class="school-info">Panitia Sains • Fail Induk Rasmi</div>
+    </div>
+
+    <div class="title">Carta Organisasi Panitia</div>
+
+    <!-- BUTTON -->
+    <div class="top-actions">
+        <a href="index.html" class="btn">← Kembali</a>
+        <button onclick="window.print()" class="btn">🖨️ Print</button>
+    </div>
+
+    <!-- DATA -->
+    <div class="card">
+        <img src="gb.png" class="avatar">
+        <div class="info">
+            <div class="role">Guru Besar</div>
+            <div class="name">MOHD AWANG BIN MOHD YATIM</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="pkp.png" class="avatar">
+        <div class="info">
+            <div class="role">PK Pentadbiran</div>
+            <div class="name">—</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="pkhem.png" class="avatar">
+        <div class="info">
+            <div class="role">PK HEM</div>
+            <div class="name">RAFIEQ SYAZWAN BIN MAT ROSHID</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="pkko.png" class="avatar">
+        <div class="info">
+            <div class="role">PK Kokurikulum</div>
+            <div class="name">ABDUL HALIM BIN MAT HANIPI</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="alimie.png" class="avatar">
+        <div class="info">
+            <div class="role">Ketua Panitia</div>
+            <div class="name">MOHD ALIMIE BIN ZAWAWI</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="syahira.png" class="avatar">
+        <div class="info">
+            <div class="role">Setiausaha</div>
+            <div class="name">SITI NUR SYAHIRA BINTI SA'IDI</div>
+        </div>
+    </div>
+
+    <!-- AHLI -->
+    <div class="card">
+        <div class="info">
+            <div class="role">Ahli Panitia</div>
+
+            <div class="grid">
+                <div class="member">
+                    <img src="hakim.png" class="avatar">
+                    <div class="name">Mohd Hakim Bin Awang</div>
+                </div>
+
+                <div class="member">
+                    <img src="yusof.png" class="avatar">
+                    <div class="name">Mohd Yusof Bin Zakaria</div>
+                </div>
+
+                <div class="member">
+                    <img src="zul.png" class="avatar">
+                    <div class="name">Zul - Atfi Bin Mohamed</div>
+                </div>
+
+                <div class="member">
+                    <img src="syahira.png" class="avatar">
+                    <div class="name">Siti Nur Syahira Binti Sa'idi</div>
+                </div>
+
+                <div class="member">
+                    <img src="alimie.png" class="avatar">
+                    <div class="name">Mohd Alimie Bin Zawawi</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Panitia Sains SK Kuala Betis
+    </div>
+
+</div>
+
+</body>
+</html>
