@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringkasan Pautan - Panitia Sains SKKB</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --text-main: #1e293b;
+
+            /* Pastel Palette */
+            --p-mint: #d1fae5;
+            --p-blue: #e0f2fe;
+            --p-indigo: #e0e7ff;
+            --p-purple: #f3e8ff;
+            --p-pink: #fce7f3;
+
+            /* Accent Colors */
+            --accent-mint: #10b981;
+            --accent-blue: #0ea5e9;
+            --accent-indigo: #6366f1;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            /* Latar belakang aurora pastel halus */
+            background:
+                radial-gradient(circle at top left, var(--p-blue), transparent 45%),
+                radial-gradient(circle at bottom right, var(--p-purple), transparent 45%),
+                var(--bg-main);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* HEADER */
+        .header {
+            margin-bottom: 35px;
+            margin-top: 20px;
+        }
+
+        .logo-circle {
+            width: 90px;
+            height: 90px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+            border: 4px solid white;
+            animation: floatLogo 4s ease-in-out infinite;
+        }
+
+        .logo-circle img { width: 65px; height: auto; }
+
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-indigo);
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        /* LINK GROUPS */
+        .link-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .group-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            margin-left: 15px;
+            margin-bottom: 12px;
+        }
+
+        /* LINK CARD WITH FLOATING ANIMATION */
+        .link-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 18px 22px;
+            border-radius: 22px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255,255,255,0.7);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+
+        /* Interaction Effects */
+        .link-card:active {
+            transform: scale(0.94) !important;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .icon-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 18px;
+            transition: transform 0.4s ease;
+        }
+
+        .link-card:hover .icon-box {
+            transform: scale(1.1) rotate(-8deg);
+        }
+
+        .link-info { flex: 1; }
+        .link-info .title {
+            font-weight: 600;
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+        .link-info .desc {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            line-height: 1.3;
+        }
+
+        .chevron {
+            color: #cbd5e1;
+            width: 18px;
+            opacity: 0.6;
+        }
+
+        /* STAGGERED ANIMATION DELAYS */
+        .link-card:nth-child(2) { animation-delay: 0.3s; }
+        .link-card:nth-child(3) { animation-delay: 0.6s; }
+        .link-card:nth-child(4) { animation-delay: 0.9s; }
+
+        /* THEME COLORS */
+        .c-mint .icon-box { background: var(--p-mint); color: var(--accent-mint); }
+        .c-blue .icon-box { background: var(--p-blue); color: var(--accent-blue); }
+        .c-indigo .icon-box { background: var(--p-indigo); color: var(--accent-indigo); }
+        .c-purple .icon-box { background: var(--p-purple); color: var(--accent-purple); }
+        .c-pink .icon-box { background: var(--p-pink); color: var(--accent-pink); }
+
+        /* BACK BUTTON */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+            padding: 14px 30px;
+            background: white;
+            color: var(--accent-indigo);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--p-indigo);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.08);
+        }
+
+        .back-btn:active { transform: scale(0.92); }
+
+        /* KEYFRAMES */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(4deg); }
+        }
+
+        footer {
+            margin: 50px 0 30px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="logo-circle">
+                <img src="logo.png" alt="SKKB Logo">
+            </div>
+            <h1>Sains Digital SKKB</h1>
+            <p>Pusat Capaian Pantas Panitia</p>
+        </header>
+
+        <!-- GROUP: PENTADBIRAN -->
+        <div class="link-group">
+            <div class="group-title">Pentadbiran & Portal</div>
+
+            <a href="index.html" class="link-card c-indigo">
+                <div class="icon-box"><i data-lucide="layout-grid"></i></div>
+                <div class="link-info">
+                    <span class="title">Portal Dashboard</span>
+                    <span class="desc">Akses penuh 10 fail digital utama</span>
+                </div>
+                <i data-lucide="chevron-right" class="chevron"></i>
+            </a>
+
+            <a href="organisasi.html" class="link-card c-blue">
+                <div class="icon-box"><i data-lucide="users-2"></i></div>
+                <div class="link-info">
+                    <span class="title">Carta Organisasi</span>
+                    <span class="desc">Jawatankuasa & Ahli Panitia 2026</span>
+                </div>
+                <i data-lucide="chevron-right" class="chevron"></i>
+            </a>
+        </div>
+
+        <!-- GROUP: AKADEMIK -->
+        <div class="link-group">
+            <div class="group-title">Kurikulum & Takwim</div>
+
+            <a href="qr-dskp-rpt.html" class="link-card c-mint">
+                <div class="icon-box"><i data-lucide="qr-code"></i></div>
+                <div class="link-info">
+                    <span class="title">QR DSKP & RPT</span>
+                    <span class="desc">Muat turun dokumen standard kurikulum</span>
+                </div>
+                <i data-lucide="chevron-right" class="chevron"></i>
+            </a>
+
+            <a href="perancangan.html" class="link-card c-purple">
+                <div class="icon-box"><i data-lucide="calendar-check"></i></div>
+                <div class="link-info">
+                    <span class="title">Takwim Perancangan</span>
+                    <span class="desc">Jadual aktiviti & karnival STEM</span>
+                </div>
+                <i data-lucide="chevron-right" class="chevron"></i>
+            </a>
+        </div>
+
+        <!-- GROUP: SISTEM LUAR -->
+        <div class="link-group">
+            <div class="group-title">Sistem Luaran KPM</div>
+
+            <a href="https://moe.delima.edu.my" target="_blank" class="link-card c-pink">
+                <div class="icon-box"><i data-lucide="graduation-cap"></i></div>
+                <div class="link-info">
+                    <span class="title">Portal DELIMa</span>
+                    <span class="desc">Capaian aplikasi pembelajaran digital</span>
+                </div>
+                <i data-lucide="external-link" class="chevron"></i>
+            </a>
+
+            <a href="#" class="link-card c-blue">
+                <div class="icon-box"><i data-lucide="server"></i></div>
+                <div class="link-info">
+                    <span class="title">IDME & APDM</span>
+                    <span class="desc">Pengurusan data murid & kehadiran</span>
+                </div>
+                <i data-lucide="external-link" class="chevron"></i>
+            </a>
+        </div>
+
+        <!-- NAVIGATION ACTION -->
+        <a href="index.html" class="back-btn">
+            <i data-lucide="arrow-left-circle" style="width: 18px;"></i>
+            Lihat Paparan Portal
+        </a>
+
+        <footer>
+            SK KUALA BETIS • PANITIA SAINS DIGITAL<br>
+            Sesi Akademik 2026/2027
+        </footer>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

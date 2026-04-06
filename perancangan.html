@@ -1,399 +1,429 @@
-<!-- CONFIRMATION: NEITHER Mermaid JS NOR SVG were used anywhere in the output. All icons and diagrams use standard Unicode characters or structured HTML/CSS. -->
-<!-- NARRATIVE PLAN SUMMARY:
-Section 1: Strategi Fokus - Memperincikan inisiatif Sudut Sains Hidup dan PBD Amali bagi murid asli.
-Section 2: Takwim Teragih - Menyusun aktiviti mengikut bulan dengan gaya kad yang selari dengan Carta Organisasi.
-Section 3: Visualisasi Data - Menampilkan agihan bajet PCG dan sasaran PBD menggunakan Chart.js dengan palet warna Indigo-SkyBlue. -->
-
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Takwim & Perancangan Panitia Sains 2026</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perancangan Strategik Panitia Sains SKKB</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<style>
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --text-main: #1e293b;
+            --accent-indigo: #6366f1;
+            --accent-blue: #0ea5e9;
+            --accent-purple: #a855f7;
+            --accent-emerald: #10b981;
+            --accent-orange: #f59e0b;
+            --glass-white: rgba(255, 255, 255, 0.85);
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
 
-/* 🌸 THEME */
-:root {
-    --bg: #f6f7fb;
-    --text: #2b2d42;
-    --card: rgba(255,255,255,0.55);
-    --border: rgba(255,255,255,0.6);
-    --accent: #a5b4fc;
-    --accent2: #bae6fd;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* BODY */
-body {
-    font-family: 'Inter', sans-serif;
-    background:
-        radial-gradient(circle at top left, var(--accent2), transparent 40%),
-        radial-gradient(circle at bottom right, var(--accent), transparent 40%),
-        var(--bg);
-    color: var(--text);
-    display:flex;
-    justify-content:center;
-    padding:20px;
-}
+        @keyframes growUp {
+            from { height: 0; }
+            to { height: var(--h); }
+        }
 
-/* CONTAINER */
-.container {
-    width:100%;
-    max-width:600px;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
 
-/* HEADER */
-.header {
-    text-align:center;
-    margin-bottom:20px;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, #eef2ff 0%, transparent 25%),
+                radial-gradient(circle at 90% 90%, #ecfdf5 0%, transparent 25%),
+                var(--bg-main);
+            color: var(--text-main);
+            padding: 24px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
 
-.logo {
-    width:80px;
-    margin:10px auto;
-}
+        .container { width: 100%; max-width: 1050px; }
 
-.school-name {
-    font-family:'Poppins',sans-serif;
-    font-weight:700;
-    font-size:1.2rem;
-}
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.7s ease-out;
+        }
+        .school-logo { width: 90px; margin-bottom: 12px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08)); }
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e1b4b;
+            letter-spacing: -0.5px;
+        }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--accent-indigo), var(--accent-blue));
+            color: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 8px;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+        }
 
-.school-info {
-    font-size:0.85rem;
-    opacity:0.7;
-}
+        /* GRID SYSTEM */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
 
-/* TITLE (NO GLASS BACKGROUND AS REQUESTED) */
-.title {
-    text-align:center;
-    font-family:'Poppins',sans-serif;
-    font-size:1.3rem;
-    margin:15px 0;
-    font-weight: 700;
-    color: #4338ca;
-}
+        .card {
+            background: var(--glass-white);
+            backdrop-filter: blur(16px);
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.8s ease-out both;
+        }
 
-/* BUTTONS */
-.top-actions {
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:15px;
-}
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
 
-.btn {
-    padding:10px 14px;
-    border-radius:12px;
-    font-size:0.85rem;
-    text-decoration:none;
-    color:var(--text);
-    background: var(--card);
-    backdrop-filter: blur(10px);
-    border:1px solid var(--border);
-    transition: all 0.25s ease;
-    cursor:pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
+        .col-8 { grid-column: span 8; }
+        .col-4 { grid-column: span 4; }
+        .col-12 { grid-column: span 12; }
 
-.btn:hover {
-    transform: translateY(-2px) scale(1.02);
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    color:#1e293b;
-    box-shadow:0 8px 20px rgba(0,0,0,0.12);
-}
+        /* VISI PANITIA */
+        .vision-card {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px;
+        }
+        .vision-card::after {
+            content: '';
+            position: absolute;
+            bottom: -20px; left: -20px;
+            width: 150px; height: 150px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .vision-text h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; margin-bottom: 8px; }
+        .vision-quote { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 600; line-height: 1.2; z-index: 1; }
+        .vision-quote span { color: var(--accent-orange); }
+        .vision-icon {
+            font-size: 4rem;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3));
+            z-index: 1;
+        }
 
-/* SECTION LABEL */
-.section-label {
-    font-family:'Poppins',sans-serif;
-    font-size:0.9rem;
-    font-weight: 600;
-    margin:25px 0 10px;
-    color:#6366f1;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+        /* STRATEGY BLOCKS */
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1e1b4b;
+        }
 
-/* CARD */
-.card {
-    background: var(--card);
-    backdrop-filter: blur(14px);
-    border:1px solid var(--border);
-    border-radius:18px;
-    padding:16px;
-    margin-bottom:12px;
-    transition: all 0.3s ease;
-    opacity:0;
-    transform:translateY(15px);
-    animation:fadeUp 0.6s ease forwards;
-}
+        .strat-item {
+            background: rgba(248, 250, 252, 0.5);
+            padding: 20px;
+            border-radius: 18px;
+            margin-bottom: 16px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+        }
+        .strat-item:hover { background: white; transform: scale(1.01); }
+        .strat-item h4 { font-size: 0.95rem; color: var(--accent-indigo); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+        .strat-item p { font-size: 0.85rem; color: #64748b; }
 
-.card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow:0 12px 30px rgba(0,0,0,0.1);
-}
+        /* TIMELINE */
+        .timeline { position: relative; padding-left: 24px; }
+        .timeline::before {
+            content: '';
+            position: absolute; left: 0; top: 8px; bottom: 8px;
+            width: 2px; background: #e2e8f0;
+        }
+        .time-node { position: relative; margin-bottom: 30px; transition: transform 0.2s ease; }
+        .time-node:hover { transform: translateX(5px); }
+        .time-node::after {
+            content: '';
+            position: absolute; left: -29px; top: 6px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: white; border: 3px solid var(--accent-indigo);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+        .time-month { font-size: 0.75rem; font-weight: 800; color: var(--accent-indigo); letter-spacing: 0.5px; }
+        .time-label { font-size: 0.9rem; font-weight: 700; color: #1e293b; }
 
-/* STRATEGY */
-.strategy-item {
-    display:flex;
-    gap:12px;
-}
+        /* CARTA SASARAN */
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 220px;
+            padding: 30px 10px 0;
+            gap: 10px;
+        }
+        .bar-wrapper { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .bar-box {
+            width: 100%;
+            max-width: 50px;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+        .bar {
+            width: 100%;
+            border-radius: 12px 12px 4px 4px;
+            animation: growUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .bar-val {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #1e1b4b;
+            position: absolute;
+            top: -28px;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease 1s forwards;
+        }
+        .bar-label { font-size: 0.75rem; font-weight: 700; color: #64748b; margin-top: 5px; }
 
-.icon-box {
-    min-width:45px;
-    height:45px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size: 1.2rem;
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
+        /* ACTIONS */
+        .actions {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+        .btn {
+            padding: 14px 28px;
+            border-radius: 16px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: white;
+            box-shadow: 0 10px 20px -10px rgba(30, 27, 75, 0.5);
+        }
+        .btn-secondary {
+            background: white;
+            color: #1e1b4b;
+            border: 2px solid #e2e8f0;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px -12px rgba(0, 0, 0, 0.2);
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent-indigo);
+            color: var(--accent-indigo);
+        }
 
-.strategy-info h4 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.0rem;
-    margin-bottom: 2px;
-}
+        @media (max-width: 900px) {
+            .col-8, .col-4 { grid-column: span 12; }
+            .vision-card { flex-direction: column; text-align: center; gap: 20px; }
+        }
 
-.strategy-info p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    line-height: 1.4;
-}
-
-/* TIMELINE */
-.timeline-item {
-    display:flex;
-    gap:12px;
-}
-
-.month-tag {
-    font-weight:700;
-    font-size:0.75rem;
-    min-width:50px;
-    color: #4f46e5;
-    padding-top: 2px;
-}
-
-.event-info h5 {
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 2px;
-}
-
-.event-info p {
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
-
-/* CHART */
-.chart-box {
-    height:220px;
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* ANIMATION DELAYS */
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.2s; }
-.card:nth-child(3) { animation-delay: 0.3s; }
-.card:nth-child(4) { animation-delay: 0.4s; }
-
-/* ANIMATION */
-@keyframes fadeUp {
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* FOOTER */
-.footer {
-    text-align:center;
-    font-size:0.8rem;
-    margin-top:30px;
-    padding-bottom: 20px;
-    opacity:0.8;
-}
-
-/* PRINT */
-@media print {
-    body { background:white; padding:0; }
-    .top-actions { display:none; }
-    .card { box-shadow:none; break-inside:avoid; opacity: 1 !important; transform: none !important; }
-}
-
-</style>
+        @media print {
+            .actions { display: none !important; }
+            body { background: white; padding: 0; }
+            .card { box-shadow: none; border: 1px solid #eee; break-inside: avoid; }
+            .vision-card { background: #1e1b4b !important; -webkit-print-color-adjust: exact; }
+            .bar { -webkit-print-color-adjust: exact; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- HEADER -->
-    <div class="header">
-        <img src="logo.png" class="logo" alt="Logo Sekolah">
-        <div class="school-name">SK Kuala Betis</div>
-        <div class="school-info">Perancangan Strategik Panitia Sains 2026</div>
-    </div>
+        <header class="header">
+            <img src="logo.png" class="school-logo" alt="Logo Sekolah">
+            <h1>Panitia Sains SK Kuala Betis</h1>
+            <div class="badge">Perancangan & Takwim 2026/2027</div>
+        </header>
 
-    <!-- TITLE (CLEAN TEXT) -->
-    <div class="title">📅 Takwim & Pengurusan Tahunan</div>
+        <div class="dashboard">
 
-    <!-- BUTTONS -->
-    <div class="top-actions">
-        <a href="index.html" class="btn"><span>←</span> Kembali</a>
-        <button onclick="window.print()" class="btn"><span>🖨️</span> Cetak</button>
-    </div>
-
-    <!-- STRATEGI -->
-    <div class="section-label"><span>🎯</span> Strategi Fokus Murid Asli</div>
-
-    <div class="card">
-        <div class="strategy-item">
-            <div class="icon-box">♻️</div>
-            <div class="strategy-info">
-                <h4>Sudut Sains Hidup</h4>
-                <p>Tanaman kitar semula (hidroponik botol) & sudut spesimen alam. Kos rendah & mesra komuniti asli.</p>
+            <!-- VISI PANITIA MODEN -->
+            <div class="col-12 card vision-card" style="animation-delay: 0.1s;">
+                <div class="vision-text">
+                    <h2>Hala Tuju Utama</h2>
+                    <p class="vision-quote">Sains <span>Santai</span>,<br>Kehadiran <span>Padu</span></p>
+                </div>
+                <div class="vision-icon">
+                    <i data-lucide="microscope" style="width: 70px; height: 70px;"></i>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="strategy-item">
-            <div class="icon-box">🛠️</div>
-            <div class="strategy-info">
-                <h4>Minggu Amali PBD</h4>
-                <p>Penilaian kemahiran proses sains secara amali santai bagi menggantikan format ujian formal.</p>
+            <!-- STRATEGI -->
+            <div class="col-8 card" style="animation-delay: 0.2s;">
+                <div class="card-title">
+                    <i data-lucide="target" style="color: var(--accent-indigo);"></i>
+                    Strategi Fokus Murid Asli
+                </div>
+
+                <div class="strat-item">
+                    <h4><i data-lucide="leaf" style="width: 16px;"></i> Sudut Sains Hidup (Hidroponik)</h4>
+                    <p>Memulakan tanaman hidroponik botol kitar semula di koridor bilik sains bagi memupuk minat murid melalui penjagaan harian secara praktikal.</p>
+                </div>
+
+                <div class="strat-item">
+                    <h4><i data-lucide="clipboard-check" style="width: 16px;"></i> Minggu Amali PBD Bersepadu</h4>
+                    <p>Penilaian kemahiran proses sains secara santai. Guru menyediakan borang transit khusus untuk merekodkan kemahiran manipulatif tanpa tekanan ujian.</p>
+                </div>
+
+                <div class="strat-item" style="margin-bottom: 0;">
+                    <h4><i data-lucide="brush" style="width: 16px;"></i> Mural "Sains Rimba"</h4>
+                    <p>Inisiatif keceriaan dinding luar bilik sains bagi mewujudkan suasana sekolah yang lebih mesra alam dan menarik minat murid untuk hadir.</p>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <!-- TAKWIM -->
-    <div class="section-label"><span>🗓️</span> Aliran Takwim 2026</div>
-
-    <div class="card">
-        <div class="timeline-item">
-            <div class="month-tag">MEI</div>
-            <div class="event-info">
-                <h5>Karnival Sains (Fasa 1: Eksplorasi)</h5>
-                <p>Aktiviti: Roket Air Botol, Pesta Buih & Pertandingan Mewarna Sains.</p>
+            <!-- TAKWIM -->
+            <div class="col-4 card" style="animation-delay: 0.3s;">
+                <div class="card-title">
+                    <i data-lucide="calendar" style="color: var(--accent-purple);"></i>
+                    Takwim Panitia
+                </div>
+                <div class="timeline">
+                    <div class="time-node">
+                        <div class="time-month">MEI</div>
+                        <div class="time-label">Karnival Sains Fasa 1</div>
+                    </div>
+                    <div class="time-node">
+                        <div class="time-month">JULAI</div>
+                        <div class="time-label">Amali PBD Bersepadu</div>
+                    </div>
+                    <div class="time-node">
+                        <div class="time-month">OKT</div>
+                        <div class="time-label">Karnival Sains Fasa 2</div>
+                    </div>
+                    <div class="time-node" style="margin-bottom: 0;">
+                        <div class="time-month">NOV</div>
+                        <div class="time-label">Semakan Stok & Aset</div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="timeline-item">
-            <div class="month-tag">JUL</div>
-            <div class="event-info">
-                <h5>Minggu Amali PBD Bersepadu</h5>
-                <p>Sesi amali khusus untuk merekodkan Tahap Penguasaan (TP) murid Tahun 1-6.</p>
+            <!-- CARTA SASARAN TP (FIXED ANIMATION) -->
+            <div class="col-12 card" style="animation-delay: 0.4s;">
+                <div class="card-title">
+                    <i data-lucide="trending-up" style="color: var(--accent-emerald);"></i>
+                    Sasaran Minimum TP3 (%) mengikut Tahun
+                </div>
+                <div class="chart-container">
+                    <!-- Thn 1 -->
+                    <div class="bar-wrapper">
+                        <div class="bar-box">
+                            <div class="bar" style="--h: 95%; height: 95%; background: var(--accent-indigo);">
+                                <span class="bar-val">95%</span>
+                            </div>
+                        </div>
+                        <span class="bar-label">Tahun 1</span>
+                    </div>
+                    <!-- Thn 2 -->
+                    <div class="bar-wrapper">
+                        <div class="bar-box">
+                            <div class="bar" style="--h: 92%; height: 92%; background: var(--accent-indigo);">
+                                <span class="bar-val">92%</span>
+                            </div>
+                        </div>
+                        <span class="bar-label">Tahun 2</span>
+                    </div>
+                    <!-- Thn 3 -->
+                    <div class="bar-wrapper">
+                        <div class="bar-box">
+                            <div class="bar" style="--h: 90%; height: 90%; background: var(--accent-blue);">
+                                <span class="bar-val">90%</span>
+                            </div>
+                        </div>
+                        <span class="bar-label">Tahun 3</span>
+                    </div>
+                    <!-- Thn 4 -->
+                    <div class="bar-wrapper">
+                        <div class="bar-box">
+                            <div class="bar" style="--h: 85%; height: 85%; background: var(--accent-blue);">
+                                <span class="bar-val">85%</span>
+                            </div>
+                        </div>
+                        <span class="bar-label">Tahun 4</span>
+                    </div>
+                    <!-- Thn 5 -->
+                    <div class="bar-wrapper">
+                        <div class="bar-box">
+                            <div class="bar" style="--h: 82%; height: 82%; background: var(--accent-purple);">
+                                <span class="bar-val">82%</span>
+                            </div>
+                        </div>
+                        <span class="bar-label">Tahun 5</span>
+                    </div>
+                    <!-- Thn 6 -->
+                    <div class="bar-wrapper">
+                        <div class="bar-box">
+                            <div class="bar" style="--h: 88%; height: 88%; background: var(--accent-purple);">
+                                <span class="bar-val">88%</span>
+                            </div>
+                        </div>
+                        <span class="bar-label">Tahun 6</span>
+                    </div>
+                </div>
             </div>
+
         </div>
+
+        <div class="actions">
+            <a href="index.html" class="btn btn-secondary">
+                <i data-lucide="home" style="width: 18px;"></i> Kembali ke Portal
+            </a>
+            <button class="btn btn-primary" onclick="window.print()">
+                <i data-lucide="printer" style="width: 18px;"></i> Cetak Laporan
+            </button>
+        </div>
+
     </div>
 
-    <div class="card">
-        <div class="timeline-item">
-            <div class="month-tag">OKT</div>
-            <div class="event-info">
-                <h5>Karnival Sains (Fasa 2: Inovasi)</h5>
-                <p>Aktiviti: Reka Cipta Bahan Buangan & Litar Elektrik Kreatif.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ANALISIS -->
-    <div class="section-label"><span>📈</span> Agihan PCG & Sasaran PBD</div>
-
-    <div class="card">
-        <h4 style="font-size:0.85rem; font-family:'Poppins'; margin-bottom: 5px;">Agihan Peruntukan PCG (%)</h4>
-        <div class="chart-box">
-            <canvas id="budgetChart"></canvas>
-        </div>
-    </div>
-
-    <div class="card">
-        <h4 style="font-size:0.85rem; font-family:'Poppins'; margin-bottom: 5px;">Sasaran Minimum TP3 (%)</h4>
-        <div class="chart-box">
-            <canvas id="pbdChart"></canvas>
-        </div>
-    </div>
-
-    <div class="footer">
-        © 2026 Panitia Sains SK Kuala Betis    </div>
-
-</div>
-
-<script>
-    // Helper function for labels
-    const wrapLabel = (text) => {
-        if (text.length <= 15) return text;
-        const words = text.split(' ');
-        let lines = [];
-        let curr = '';
-        words.forEach(w => {
-            if ((curr + w).length > 15) { lines.push(curr.trim()); curr = w + ' '; }
-            else { curr += w + ' '; }
-        });
-        lines.push(curr.trim());
-        return lines;
-    };
-
-    // Chart Budget
-    const ctxB = document.getElementById('budgetChart').getContext('2d');
-    new Chart(ctxB, {
-        type: 'doughnut',
-        data: {
-            labels: ["Bahan Amali", "Hadiah/Insentif", "Keceriaan", "Modul/Kertas"].map(wrapLabel),
-            datasets: [{
-                data: [60, 20, 10, 10],
-                backgroundColor: ['#a5b4fc', '#bae6fd', '#cbd5e1', '#f1f5f9'],
-                borderWidth: 2
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'right', labels: { font: { size: 10, family: 'Inter' } } }
-            }
-        }
-    });
-
-    // Chart PBD
-    const ctxP = document.getElementById('pbdChart').getContext('2d');
-    new Chart(ctxP, {
-        type: 'bar',
-        data: {
-            labels: ["Thn 1", "Thn 2", "Thn 3", "Thn 4", "Thn 5", "Thn 6"],
-            datasets: [{
-                label: 'Sasaran %',
-                data: [95, 92, 90, 85, 82, 88],
-                backgroundColor: '#a5b4fc',
-                borderRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: { beginAtZero: true, max: 100, ticks: { font: { size: 10 } } },
-                x: { ticks: { font: { size: 10 } } }
-            },
-            plugins: { legend: { display: false } }
-        }
-    });
-</script>
-
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

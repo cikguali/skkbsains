@@ -1,296 +1,378 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Organisasi - Panitia Sains SKKB</title>
 
-<title>Carta Organisasi Panitia Sains</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --text-main: #1e293b;
+            --p-mint: #d1fae5;
+            --p-blue: #e0f2fe;
+            --p-indigo: #e0e7ff;
+            --p-purple: #f3e8ff;
+            --p-pink: #fce7f3;
+            --accent-indigo: #6366f1;
+            --accent-blue: #0ea5e9;
+            --accent-purple: #a855f7;
+            --accent-mint: #10b981;
+            --accent-orange: #f59e0b;
+        }
 
-<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-/* THEME */
-:root {
-    --bg: #f6f7fb;
-    --text: #2b2d42;
-    --card: rgba(255, 255, 255, 0.55);
-    --border: rgba(255,255,255,0.6);
-    --accent: #a5b4fc;
-    --accent2: #bae6fd;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background:
+                radial-gradient(circle at top left, var(--p-blue), transparent 45%),
+                radial-gradient(circle at bottom right, var(--p-purple), transparent 45%),
+                var(--bg-main);
+        }
 
+        .container {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
 
+        /* LOGO & HEADER */
+        .school-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
 
-/* RESET */
-* { margin:0; padding:0; box-sizing:border-box; }
+        .header { margin-bottom: 40px; margin-top: 10px; animation: fadeIn 1s ease; }
+        .header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent-indigo);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        .header p { font-size: 0.85rem; color: #64748b; font-weight: 600; letter-spacing: 1px; }
 
-/* BODY */
-body {
-    font-family: 'Inter', sans-serif;
-    background:
-        radial-gradient(circle at top left, var(--accent2), transparent 40%),
-        radial-gradient(circle at bottom right, var(--accent), transparent 40%),
-        var(--bg);
-    color: var(--text);
-    display:flex;
-    justify-content:center;
-    padding:20px;
-}
+        /* ORGANIZATIONAL FLOW */
+        .org-structure {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
 
-/* CONTAINER */
-.container { width:100%; max-width:500px; }
+        /* CARD STYLE */
+        .leader-card, .member-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 15px 20px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255,255,255,0.7);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-align: left;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-/* HEADER */
-.header { text-align:center; margin-bottom:15px; }
+        .leader-card:hover, .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.1);
+            background: white;
+            border-color: var(--accent-indigo);
+        }
 
-.logo { width:80px; margin:10px auto; }
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            background: #f1f5f9;
+            object-fit: cover;
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
 
-.school-name {
-    font-family:'Poppins',sans-serif;
-    font-weight:700;
-    font-size:1.2rem;
-}
+        .info .role {
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-indigo);
+            margin-bottom: 2px;
+        }
 
-.school-info { font-size:0.85rem; opacity:0.7; }
+        .info .name {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
 
-/* TITLE */
-.title {
-    text-align:center;
-    font-family:'Poppins',sans-serif;
-    font-size:1.3rem;
-    margin:10px 0 20px;
-}
+        /* CONNECTOR LINES */
+        .line {
+            width: 2px;
+            height: 15px;
+            background: linear-gradient(to bottom, var(--accent-indigo), var(--p-indigo));
+        }
 
-/* BUTTONS */
-.top-actions {
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:15px;
-}
+        /* PK ROW */
+        .pk-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            margin: 5px 0;
+        }
+        .pk-card { max-width: 250px; padding: 12px 15px; }
+        .pk-card .avatar { width: 45px; height: 45px; }
+        .pk-card .info .name { font-size: 0.7rem; }
 
-.btn {
-    padding:10px 14px;
-    border-radius:12px;
-    font-size:0.85rem;
-    text-decoration:none;
-    color:var(--text);
-    background:var(--card);
-    backdrop-filter:blur(10px);
-    border:1px solid var(--border);
-    transition: all 0.25s ease;
-}
+        /* GRID FOR MEMBERS */
+        .members-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            width: 100%;
+            margin-top: 10px;
+        }
 
-.btn:hover {
-    transform: translateY(-2px);
-    background: var(--accent);
-    color: white;
-}
+        .member-card {
+            max-width: none;
+            padding: 12px 15px;
+        }
 
-/* CARD */
-.card {
-    display:flex;
-    align-items:center;
-    gap:14px;
+        .member-card .avatar { width: 40px; height: 40px; border-radius: 12px; }
+        .member-card .info .name { font-size: 0.75rem; }
 
-    background: var(--card);
-    backdrop-filter: blur(14px);
-    border:1px solid var(--border);
+        /* BORDER COLORS */
+        .c-purple { border-top: 4px solid var(--accent-purple); }
+        .c-orange { border-top: 4px solid var(--accent-orange); }
+        .c-blue { border-top: 4px solid var(--accent-blue); }
+        .c-indigo { border-top: 4px solid var(--accent-indigo); }
+        .c-mint { border-top: 4px solid var(--accent-mint); }
 
-    border-radius:18px;
-    padding:14px;
-    margin-bottom:12px;
+        .group-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 20px 0 10px 0;
+        }
 
-    transition: all 0.3s ease;
+        /* ACTIONS */
+        .actions {
+            margin-top: 50px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 10px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: white;
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--accent-indigo);
+            color: white;
+            border-color: var(--accent-indigo);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover {
+            background: #4f46e5;
+        }
 
-    opacity:0;
-    transform:translateY(15px);
-    animation:fadeUp 0.6s ease forwards;
-}
+        /* PRINT STYLES */
+        @media print {
+            .actions, .header p { display: none !important; }
+            body { background: white !important; padding: 0; }
+            .container { max-width: 100%; }
+            .leader-card, .member-card {
+                break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                background: white !important;
+            }
+            .org-structure { gap: 10px; }
+            .header { margin-bottom: 20px; }
+            .school-logo { width: 60px; }
+        }
 
-/* HOVER ANIMATION */
-.card:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* AVATAR (BESAR) */
-.avatar {
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    object-fit:cover;
-    border:2px solid rgba(255,255,255,0.6);
-}
-
-/* INFO */
-.info { flex:1; }
-
-.role {
-    font-family:'Poppins',sans-serif;
-    font-weight:600;
-    font-size:0.95rem;
-}
-
-.name {
-    font-size:0.85rem;
-    opacity:0.85;
-}
-
-/* GRID AHLI */
-.grid {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:10px;
-}
-
-.member {
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-/* ANIMATION DELAY */
-.card:nth-child(1){animation-delay:0.05s;}
-.card:nth-child(2){animation-delay:0.1s;}
-.card:nth-child(3){animation-delay:0.15s;}
-.card:nth-child(4){animation-delay:0.2s;}
-.card:nth-child(5){animation-delay:0.25s;}
-.card:nth-child(6){animation-delay:0.3s;}
-.card:nth-child(7){animation-delay:0.35s;}
-
-@keyframes fadeUp {
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* PRINT */
-@media print {
-    .top-actions { display:none; }
-    body { background:white; }
-}
-
-/* FOOTER */
-.footer {
-    text-align:center;
-    margin-top:15px;
-    font-size:0.75rem;
-    opacity:0.6;
-}
-
-</style>
+        @media (max-width: 650px) {
+            .members-grid { grid-template-columns: 1fr; }
+            .pk-row { flex-direction: column; align-items: center; }
+            .pk-card { max-width: 100%; }
+            .actions { flex-direction: column; gap: 15px; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+    <div class="container">
+        <!-- LOGO SEKOLAH -->
+        <img src="logo.png" class="school-logo" alt="Logo SK Kuala Betis" onerror="this.src='https://via.placeholder.com/80?text=LOGO'">
 
-    <!-- HEADER -->
-    <div class="header">
-        <img src="logo.png" class="logo">
-        <div class="school-name">SK Kuala Betis</div>
-        <div class="school-info">Panitia Sains • Fail Induk Rasmi</div>
-    </div>
+        <!-- HEADER -->
+        <header class="header">
+            <h1>Carta Organisasi Panitia Sains</h1>
+            <p>SK KUALA BETIS • SESI 2026/2027</p>
+        </header>
 
-    <div class="title">Carta Organisasi Panitia</div>
-
-    <!-- BUTTON -->
-    <div class="top-actions">
-        <a href="index.html" class="btn">← Kembali</a>
-        <button onclick="window.print()" class="btn">🖨️ Print</button>
-    </div>
-
-    <!-- DATA -->
-    <div class="card">
-        <img src="gb.png" class="avatar">
-        <div class="info">
-            <div class="role">Guru Besar</div>
-            <div class="name">MOHD AWANG BIN MOHD YATIM</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="pkp.png" class="avatar">
-        <div class="info">
-            <div class="role">PK Pentadbiran</div>
-            <div class="name">—</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="pkhem.png" class="avatar">
-        <div class="info">
-            <div class="role">PK HEM</div>
-            <div class="name">RAFIEQ SYAZWAN BIN MAT ROSHID</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="pkko.png" class="avatar">
-        <div class="info">
-            <div class="role">PK Kokurikulum</div>
-            <div class="name">ABDUL HALIM BIN MAT HANIPI</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="alimie.png" class="avatar">
-        <div class="info">
-            <div class="role">Ketua Panitia</div>
-            <div class="name">MOHD ALIMIE BIN ZAWAWI</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="syahira.png" class="avatar">
-        <div class="info">
-            <div class="role">Setiausaha</div>
-            <div class="name">SITI NUR SYAHIRA BINTI SA'IDI</div>
-        </div>
-    </div>
-
-    <!-- AHLI -->
-    <div class="card">
-        <div class="info">
-            <div class="role">Ahli Panitia</div>
-
-            <div class="grid">
-                <div class="member">
-                    <img src="hakim.png" class="avatar">
-                    <div class="name">Mohd Hakim Bin Awang</div>
+        <div class="org-structure">
+            <!-- PENGERUSI (GURU BESAR) -->
+            <div class="leader-card c-purple">
+                <img src="gb.png" class="avatar" alt="Guru Besar" onerror="this.src='https://ui-avatars.com/api/?name=GB&background=f3e8ff&color=a855f7'">
+                <div class="info">
+                    <div class="role">Pengerusi</div>
+                    <div class="name">MOHD AWANG BIN MOHD YATIM</div>
                 </div>
+            </div>
 
-                <div class="member">
-                    <img src="yusof.png" class="avatar">
-                    <div class="name">Mohd Yusof Bin Zakaria</div>
+            <div class="line"></div>
+
+            <!-- PENOLONG KANAN (PKP, PKHEM, PKKO) -->
+            <div class="pk-row">
+                <div class="leader-card pk-card c-orange">
+                    <img src="pkp.png" class="avatar" alt="PK Pentadbiran" onerror="this.src='https://ui-avatars.com/api/?name=PKP&background=fff7ed&color=f59e0b'">
+                    <div class="info">
+                        <div class="role">PK Pentadbiran</div>
+                        <div class="name">NAMA PENOLONG KANAN 1</div>
+                    </div>
                 </div>
-
-                <div class="member">
-                    <img src="zul.png" class="avatar">
-                    <div class="name">Zul - Atfi Bin Mohamed</div>
+                <div class="leader-card pk-card c-orange">
+                    <img src="pkhem.png" class="avatar" alt="PK HEM" onerror="this.src='https://ui-avatars.com/api/?name=HEM&background=fff7ed&color=f59e0b'">
+                    <div class="info">
+                        <div class="role">PK HEM</div>
+                        <div class="name">NAMA PENOLONG KANAN HEM</div>
+                    </div>
                 </div>
-
-                <div class="member">
-                    <img src="syahira.png" class="avatar">
-                    <div class="name">Siti Nur Syahira Binti Sa'idi</div>
+                <div class="leader-card pk-card c-orange">
+                    <img src="pkko.png" class="avatar" alt="PK Kokurikulum" onerror="this.src='https://ui-avatars.com/api/?name=KOKO&background=fff7ed&color=f59e0b'">
+                    <div class="info">
+                        <div class="role">PK Kokurikulum</div>
+                        <div class="name">NAMA PENOLONG KANAN KO</div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="member">
-                    <img src="alimie.png" class="avatar">
-                    <div class="name">Mohd Alimie Bin Zawawi</div>
+            <div class="line"></div>
+
+            <!-- KETUA PANITIA -->
+            <div class="leader-card c-blue">
+                <img src="alimie.png" class="avatar" alt="Ketua Panitia" onerror="this.src='https://ui-avatars.com/api/?name=KP&background=e0f2fe&color=0ea5e9'">
+                <div class="info">
+                    <div class="role">Ketua Panitia</div>
+                    <div class="name">MOHD ALIMIE BIN ZAWAWI</div>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <!-- SETIAUSAHA -->
+            <div class="leader-card c-indigo">
+                <img src="syahira.png" class="avatar" alt="Setiausaha" onerror="this.src='https://ui-avatars.com/api/?name=SU&background=e0e7ff&color=6366f1'">
+                <div class="info">
+                    <div class="role">Setiausaha</div>
+                    <div class="name">SITI NUR SYAHIRA BINTI SA'IDI</div>
+                </div>
+            </div>
+
+            <div class="group-title">Ahli-Ahli Panitia</div>
+
+            <!-- AHLI GRID -->
+            <div class="members-grid">
+                <div class="member-card c-mint">
+                    <img src="hakim.png" class="avatar" alt="Ahli" onerror="this.src='https://ui-avatars.com/api/?name=MH&background=d1fae5&color=10b981'">
+                    <div class="info">
+                        <div class="role">Ahli</div>
+                        <div class="name">Mohd Hakim Bin Awang</div>
+                    </div>
+                </div>
+                <div class="member-card c-mint">
+                    <img src="yusof.png" class="avatar" alt="Ahli" onerror="this.src='https://ui-avatars.com/api/?name=MY&background=d1fae5&color=10b981'">
+                    <div class="info">
+                        <div class="role">Ahli</div>
+                        <div class="name">Mohd Yusof Zakaria</div>
+                    </div>
+                </div>
+                <div class="member-card c-mint">
+                    <img src="zul.png" class="avatar" alt="Ahli" onerror="this.src='https://ui-avatars.com/api/?name=ZM&background=d1fae5&color=10b981'">
+                    <div class="info">
+                        <div class="role">Ahli</div>
+                        <div class="name">Zul-Atfi Mohamed</div>
+                    </div>
+                </div>
+                <div class="member-card c-mint">
+                    <img src="alimie.png" class="avatar" alt="Ahli" onerror="this.src='https://ui-avatars.com/api/?name=AZ&background=d1fae5&color=10b981'">
+                    <div class="info">
+                        <div class="role">Ahli</div>
+                        <div class="name">Mohd Alimie Zawawi</div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- ACTIONS -->
+        <div class="actions">
+            <a href="index.html" class="btn">
+                <i data-lucide="home" style="width: 18px;"></i>
+                Kembali ke Portal
+            </a>
+            <button onclick="window.print()" class="btn btn-primary">
+                <i data-lucide="printer" style="width: 18px;"></i>
+                Cetak Carta
+            </button>
+        </div>
+
+        <footer style="font-size: 0.65rem; color: #94a3b8; margin-bottom: 30px; letter-spacing: 1px; font-weight: 500;">
+            DIKEMASKINI: 2026 • PANITIA SAINS SK KUALA BETIS
+        </footer>
     </div>
 
-    <div class="footer">
-        © 2026 Panitia Sains SK Kuala Betis
-    </div>
-
-</div>
-
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

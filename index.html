@@ -1,272 +1,414 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Digital Panitia Sains SKKB</title>
 
-<title>Panitia Sains SK Kuala Betis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --sidebar-bg: #ffffff;
+            --text-main: #1e293b;
 
-<!-- Icons -->
-<script src="https://unpkg.com/lucide@latest"></script>
+            /* Pastel Palette */
+            --p-mint: #d1fae5;
+            --p-blue: #e0f2fe;
+            --p-indigo: #e0e7ff;
+            --p-purple: #f3e8ff;
+            --p-pink: #fce7f3;
 
-<style>
+            /* Accent Colors */
+            --accent-mint: #10b981;
+            --accent-blue: #0ea5e9;
+            --accent-indigo: #6366f1;
+            --accent-purple: #a855f7;
+            --accent-pink: #ec4899;
 
-/* 🌸 LIGHT MODE (PASTEL) */
-:root {
-    --bg: #97b3ae;
-    --text: #2b2d42;
-    --card: rgba(255, 255, 255, 0.55);
-    --border: rgba(255,255,255,0.6);
+            --shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
 
-    --accent: #a5b4fc; /* pastel indigo */
-    --accent2: #bae6fd; /* pastel blue */
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+        }
 
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px;
+            background: var(--sidebar-bg);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #f1f5f9;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+        }
 
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
 
-/* BODY */
-body {
-    font-family: 'Inter', sans-serif;
-    background:
-        radial-gradient(circle at top left, var(--accent2), transparent 40%),
-        radial-gradient(circle at bottom right, var(--accent), transparent 40%),
-        var(--bg);
+        .brand img { width: 40px; height: auto; }
 
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
+        .brand-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-indigo);
+            line-height: 1.2;
+        }
 
-/* CONTAINER */
-.container {
-    width: 100%;
-    max-width: 420px;
-    text-align: center;
-    animation: fadeUp 0.8s ease;
-}
+        .nav-menu { list-style: none; flex: 1; }
 
-/* LOGO */
-.logo {
-    width: 90px;
-    margin: 10px auto;
-}
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
 
-/* TYPOGRAPHY */
-.school-name {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 1.25rem;
-}
+        .nav-item i { width: 20px; height: 20px; }
 
-.school-info {
-    font-size: 0.85rem;
-    opacity: 0.7;
-    margin-bottom: 15px;
-}
+        .nav-item:hover, .nav-item.active {
+            background: var(--p-indigo);
+            color: var(--accent-indigo);
+        }
 
-.title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin: 12px 0;
-}
+        /* MAIN CONTENT */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 40px;
+        }
 
-/* SECTION */
-.section {
-    margin-top: 20px;
-    text-align: left;
-}
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
 
-.section-title {
-    font-size: 0.8rem;
-    margin-bottom: 8px;
-    opacity: 0.6;
-    font-weight: 500;
-}
+        .welcome-text h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--accent-indigo), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* 🌸 PASTEL GLASS BUTTON */
-.link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+        .session-info {
+            background: white;
+            padding: 12px 25px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    padding: 14px;
-    margin-bottom: 10px;
+        .session-badge {
+            background: var(--p-mint);
+            color: var(--accent-mint);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
 
-    border-radius: 16px;
+        /* GRID */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
 
-    text-decoration: none;
-    color: var(--text);
+        .portal-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            border: 1px solid #f8fafc;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease forwards;
+        }
 
-    background: linear-gradient(
-        135deg,
-        rgba(255,255,255,0.6),
-        rgba(255,255,255,0.2)
-    );
+        /* SUBTLE HOVER MOVEMENT FOR CARDS */
+        .portal-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+            border-color: var(--p-indigo);
+        }
 
-    backdrop-filter: blur(14px);
-    border: 1px solid var(--border);
+        .card-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            animation: float 3.5s ease-in-out infinite;
+        }
 
-    transition: all 0.25s ease;
-}
+        /* Card-specific Pastel Styles */
+        .card-01 { border-top: 5px solid var(--accent-mint); }
+        .card-01 .card-icon { background: var(--p-mint); color: var(--accent-mint); animation-delay: 0s; }
 
-/* ICON */
-.link i {
-    width: 20px;
-    height: 20px;
-}
+        .card-02 { border-top: 5px solid var(--accent-blue); }
+        .card-02 .card-icon { background: var(--p-blue); color: var(--accent-blue); animation-delay: 0.3s; }
 
-/* ✨ HOVER (SOFT PASTEL GLOW) */
-.link:hover {
-    transform: translateY(-3px) scale(1.01);
+        .card-03 { border-top: 5px solid var(--accent-indigo); }
+        .card-03 .card-icon { background: var(--p-indigo); color: var(--accent-indigo); animation-delay: 0.6s; }
 
-    background: linear-gradient(
-        135deg,
-        var(--accent2),
-        var(--accent)
-    );
+        .card-04 { border-top: 5px solid var(--accent-purple); }
+        .card-04 .card-icon { background: var(--p-purple); color: var(--accent-purple); animation-delay: 0.9s; }
 
-    color: #1e293b;
+        .card-05 { border-top: 5px solid var(--accent-pink); }
+        .card-05 .card-icon { background: var(--p-pink); color: var(--accent-pink); animation-delay: 1.2s; }
 
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-}
+        .card-06 { border-top: 5px solid var(--accent-mint); }
+        .card-06 .card-icon { background: var(--p-mint); color: var(--accent-mint); animation-delay: 1.5s; }
 
-/* ANIMATION */
-.link {
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fadeUp 0.5s ease forwards;
-}
+        .card-07 { border-top: 5px solid var(--accent-blue); }
+        .card-07 .card-icon { background: var(--p-blue); color: var(--accent-blue); animation-delay: 1.8s; }
 
-.link:nth-child(2) { animation-delay: 0.05s; }
-.link:nth-child(3) { animation-delay: 0.1s; }
-.link:nth-child(4) { animation-delay: 0.15s; }
-.link:nth-child(5) { animation-delay: 0.2s; }
+        .card-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
 
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        .card-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
 
-/* FOOTER */
-.footer {
-    margin-top: 25px;
-    font-size: 0.75rem;
-    opacity: 0.6;
-}
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
-/* MOBILE */
-@media (max-width: 400px) {
-    .link {
-        padding: 12px;
-        font-size: 0.9rem;
-    }
-}
+        .tag {
+            font-size: 0.7rem;
+            padding: 6px 12px;
+            background: #f8fafc;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #475569;
+            font-weight: 600;
+            transition: 0.2s;
+            border: 1px solid #f1f5f9;
+        }
 
-</style>
+        .tag:hover { background: #1e293b; color: white; transform: scale(1.05); }
+
+        /* KEYFRAMES */
+        @keyframes slideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(3deg); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .sidebar { width: 80px; padding: 25px 10px; align-items: center; }
+            .brand-text, .nav-item span { display: none; }
+            .main-content { margin-left: 80px; padding: 25px; }
+            .header-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .nav-item { justify-content: center; padding: 12px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <img src="logo.png" alt="SKKB">
+            <div class="brand-text">
+                <h1>PANITIA SAINS</h1>
+                <p style="font-size: 0.65rem; color: #94a3b8;">SK KUALA BETIS</p>
+            </div>
+        </div>
 
-    <!-- LOGO -->
-    <img src="logo.png" class="logo">
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item active">
+                <i data-lucide="layout-grid"></i>
+                <span>Portal Utama</span>
+            </a>
+            <a href="ringkasan.html" class="nav-item">
+                <i data-lucide="home"></i>
+                <span>Paparan Ringkas</span>
+            </a>
+            <a href="organisasi.html" class="nav-item">
+                <i data-lucide="users"></i>
+                <span>Carta Organisasi</span>
+            </a>
+            <a href="perancangan.html" class="nav-item">
+                <i data-lucide="calendar"></i>
+                <span>Takwim 2026</span>
+            </a>
+        </nav>
 
-    <!-- INFO -->
-    <div class="school-name">SK Kuala Betis</div>
-    <div class="school-info">Panitia Sains • Fail Induk Rasmi</div>
+        <div style="padding-top: 20px; border-top: 1px solid #f1f5f9; text-align: center;">
+            <div style="font-size: 0.6rem; color: #cbd5e1;">Peneraju Sains SKKB</div>
+        </div>
+    </aside>
 
-    <div class="title">📘 Pusat Rujukan Panitia</div>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <header class="header-top">
+            <div class="welcome-text">
+                <p style="font-size: 0.9rem; color: #64748b; font-weight: 500;">Pusat Sehenti Fail Panitia Digital</p>
+                <h2>The Science Hub SKKB</h2>
+            </div>
 
-    <!-- PENGURUSAN -->
-    <div class="section">
-        <div class="section-title">PENGURUSAN</div>
+            <div class="session-info">
+                <div class="session-badge">SESI 2026</div>
+                <div style="font-size: 0.85rem; font-weight: 500; color: #475569;">
+                    SK KUALA BETIS
+                </div>
+            </div>
+        </header>
 
-        <a href="#" class="link">
-            <i data-lucide="folder"></i> Fail Induk Panitia
-        </a>
-        <a href="perancangan.html" class="link">
-            <i data-lucide="calendar"></i> Perancangan Tahunan
-        </a>
-        <a href="organisasi.html" class="link">
-            <i data-lucide="users"></i> Carta Organisasi
-        </a>
-    </div>
+        <div class="portal-grid">
 
-    <!-- AKADEMIK -->
-    <div class="section">
-        <div class="section-title">AKADEMIK</div>
+            <!-- FAIL 01 -->
+            <div class="portal-card card-01">
+                <div class="card-icon"><i data-lucide="archive"></i></div>
+                <div class="card-info">
+                    <h3>01 Fail Induk</h3>
+                    <p>Dokumen asas, Carta Organisasi, Pekeliling Ikhtisas, dan Anggaran Belanja Mengurus (PCG).</p>
+                    <div class="tags">
+                        <a href="organisasi.html" class="tag">Organisasi</a>
+                        <a href="#" class="tag">Kewangan</a>
+                        <a href="#" class="tag">SPI</a>
+                    </div>
+                </div>
+            </div>
 
-        <a href="#" class="link">
-            <i data-lucide="book-open"></i> RPH Sains
-        </a>
-        <a href="#" class="link">
-            <i data-lucide="file-text"></i> Bank Soalan
-        </a>
-        <a href="#" class="link">
-            <i data-lucide="bar-chart"></i> Analisis Peperiksaan
-        </a>
-    </div>
+            <!-- FAIL 02 -->
+            <div class="portal-card card-02">
+                <div class="card-icon"><i data-lucide="book-open"></i></div>
+                <div class="card-info">
+                    <h3>02 Sukatan Pelajaran</h3>
+                    <p>DSKP KSSR Semakan, RPT 2026, dan senarai Buku Teks kegunaan guru dan murid.</p>
+                    <div class="tags">
+                        <a href="qr-dskp-rpt.html" class="tag">DSKP</a>
+                        <a href="#" class="tag">RPT 2026</a>
+                        <a href="#" class="tag">Buku Teks</a>
+                    </div>
+                </div>
+            </div>
 
-    <!-- AKTIVITI -->
-    <div class="section">
-        <div class="section-title">AKTIVITI</div>
+            <!-- FAIL 03 -->
+            <div class="portal-card card-03">
+                <div class="card-icon"><i data-lucide="file-text"></i></div>
+                <div class="card-info">
+                    <h3>03 Minit Mesyuarat</h3>
+                    <p>Koleksi minit mesyuarat panitia, surat panggilan mesyuarat, dan maklum balas tindakan.</p>
+                    <div class="tags">
+                        <a href="#" class="tag">Minit 1/2026</a>
+                        <a href="#" class="tag">Minit 2/2026</a>
+                        <a href="#" class="tag">Maklum Balas</a>
+                    </div>
+                </div>
+            </div>
 
-        <a href="#" class="link">
-            <i data-lucide="flask-conical"></i> Projek STEM
-        </a>
-        <a href="#" class="link">
-            <i data-lucide="clipboard"></i> Laporan Aktiviti
-        </a>
-        <a href="#" class="link">
-            <i data-lucide="image"></i> Galeri
-        </a>
-    </div>
+            <!-- FAIL 04 & 08 -->
+            <div class="portal-card card-04">
+                <div class="card-icon"><i data-lucide="flask-conical"></i></div>
+                <div class="card-info">
+                    <h3>04 & 08 Aktiviti STEM</h3>
+                    <p>Perancangan aktiviti luar bilik darjah, Karnival Sains, dan laporan program kecemerlangan.</p>
+                    <div class="tags">
+                        <a href="perancangan.html" class="tag">Takwim</a>
+                        <a href="#" class="tag">Kertas Kerja</a>
+                        <a href="#" class="tag">Laporan OPR</a>
+                    </div>
+                </div>
+            </div>
 
-    <!-- LAIN -->
-    <div class="section">
-        <div class="section-title">LAIN-LAIN</div>
+            <!-- FAIL 05 & 09 -->
+            <div class="portal-card card-05">
+                <div class="card-icon"><i data-lucide="trending-up"></i></div>
+                <div class="card-info">
+                    <h3>05 & 09 Data Prestasi</h3>
+                    <p>Analisis Headcount, Post-Mortem UASA, Bank Soalan, dan data PBD terkini.</p>
+                    <div class="tags">
+                        <a href="#" class="tag">Analisis</a>
+                        <a href="#" class="tag">PBD</a>
+                        <a href="#" class="tag">Bank Soalan</a>
+                    </div>
+                </div>
+            </div>
 
-        <a href="sainsmeeting" class="link">
-            <i data-lucide="mail"></i> Penjana Minit Mesyuarat
-        </a>
-        <a href="#" class="link">
-            <i data-lucide="mail"></i> Surat Rasmi
-        </a>
-        <a href="#" class="link">
-            <i data-lucide="shield-check"></i> SOP & Manual
-        </a>
-    </div>
+            <!-- FAIL 06 & 07 -->
+            <div class="portal-card card-06">
+                <div class="card-icon"><i data-lucide="check-square"></i></div>
+                <div class="card-info">
+                    <h3>06 & 07 Pemantauan</h3>
+                    <p>Jadual pencerapan guru (PdP) dan rekod semakan buku latihan murid secara berkala.</p>
+                    <div class="tags">
+                        <a href="#" class="tag">Pencerapan</a>
+                        <a href="#" class="tag">Semakan Buku</a>
+                    </div>
+                </div>
+            </div>
 
-    <!-- FOOTER -->
-    <div class="footer">
-        © 2026 Panitia Sains SK Kuala Betis<br>
-        Dikemaskini berterusan
-    </div>
+            <!-- FAIL 10 -->
+            <div class="portal-card card-07">
+                <div class="card-icon"><i data-lucide="users-2"></i></div>
+                <div class="card-info">
+                    <h3>10 Maklumat Guru</h3>
+                    <p>Biodata guru, Jadual Waktu persendirian, dan Rekod Pembangunan Staf (SPLKPM).</p>
+                    <div class="tags">
+                        <a href="#" class="tag">Profil Guru</a>
+                        <a href="#" class="tag">Jadual Waktu</a>
+                        <a href="#" class="tag">LDP</a>
+                    </div>
+                </div>
+            </div>
 
-</div>
+        </div>
 
-<script>
-lucide.createIcons();
-</script>
+        <footer style="margin-top: 60px; border-top: 1px solid #f1f5f9; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; color: #94a3b8; font-size: 0.75rem;">
+            <div>© 2026 Panitia Sains SK Kuala Betis</div>
+            <div style="display: flex; gap: 20px;">
+                <span>DELIMa KPM</span>
+                <span>IDME</span>
+            </div>
+        </footer>
+    </main>
 
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
